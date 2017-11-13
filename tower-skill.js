@@ -19,7 +19,7 @@ module.exports = function(controller) {
     }
     
     const options = {
-        towerhost: 'awx.ciscoscience.net',
+        towerhost: process.env.tower_host,
         username: process.env.tower_user,
         password: process.env.tower_password
     };

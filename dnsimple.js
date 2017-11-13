@@ -13,6 +13,11 @@ module.exports = function(controller) {
         process.exit(1);
     }
 
+    if (!process.env.dnsimple_domain) {
+        console.log('Error: Specify a dnsimple_domain in environment.');
+        process.exit(1);
+    }
+
     function dnsimpleListRecords(bot, message, domain) {
 
         var options = {
@@ -40,7 +45,7 @@ module.exports = function(controller) {
     }
 
     controller.hears(['^record list$', 'show records'], 'direct_message,direct_mention', function(bot, message) {
-        dnsimpleListRecords(bot, message, 'ciscoscience.net');
+        dnsimpleListRecords(bot, message, process.env.dnsimple_domain);
     });
 
 };
